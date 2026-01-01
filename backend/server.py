@@ -39,6 +39,10 @@ async def heartbeat():
         print(f"[Server] Heartbeat - {time.strftime('%X')}")
         await asyncio.sleep(10)
 
+@app.get("/health")
+async def health_check():
+    return {"status": "active", "timestamp": time.time()}
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
