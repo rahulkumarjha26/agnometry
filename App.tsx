@@ -42,32 +42,60 @@ const Header: React.FC = () => {
         </h1>
         <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent-cyan transition-all duration-500 group-hover:w-full" />
 
-        {/* Logo Definition Tooltip */}
+        {/* Logo Definition Tooltip - World Class Design */}
         <AnimatePresence>
           {isLogoHovered && (
             <motion.div
-              initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: 5, filter: "blur(5px)" }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="absolute top-full left-0 mt-4 w-[280px] p-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden"
+              initial={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: 10, scale: 0.95, filter: "blur(10px)" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute top-full left-0 mt-6 w-[340px] p-6 bg-[#050505]/80 backdrop-blur-2xl border border-white/[0.08] rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] z-50 overflow-hidden group-hover:border-white/20 transition-colors duration-500"
             >
-              <div className="flex flex-col gap-3">
-                <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
-                  <span className="font-serif italic text-accent-cyan text-lg">Agno-</span>
-                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Greek: Unknown</span>
-                </div>
-                <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
-                  <span className="font-serif italic text-accent-violet text-lg">-metry</span>
-                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Measurement</span>
-                </div>
-                <p className="text-xs text-white/70 font-light leading-relaxed pt-1">
-                  The science of quantifying the <span className="text-white font-medium">unseen</span> parameters of intelligence.
-                </p>
-              </div>
+              {/* Cinematic Noise Texture */}
+              <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay" />
 
-              {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-accent-cyan/20 to-transparent pointer-events-none" />
+              {/* Ambient Glow */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent-cyan/20 blur-[60px] rounded-full pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent-violet/20 blur-[60px] rounded-full pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col gap-5">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">Etymology</span>
+                  <div className="flex gap-1">
+                    <div className="w-1 h-1 rounded-full bg-white/20" />
+                    <div className="w-1 h-1 rounded-full bg-white/20" />
+                    <div className="w-1 h-1 rounded-full bg-white/20" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-4">
+                  <div className="flex items-baseline justify-between group/item">
+                    <span className="font-serif italic text-2xl text-white group-hover/item:text-accent-cyan transition-colors duration-300">Agno-</span>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-0.5">Origin: Greek</span>
+                      <span className="text-xs text-white/80 font-light">Unknown / Unknowable</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-baseline justify-between group/item">
+                    <span className="font-serif italic text-2xl text-white group-hover/item:text-accent-violet transition-colors duration-300">-metry</span>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-0.5">Origin: Greek</span>
+                      <span className="text-xs text-white/80 font-light">Process of Measuring</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Synthesis */}
+                <div className="pt-4 border-t border-white/[0.06]">
+                  <p className="text-sm text-white/70 font-light leading-relaxed">
+                    <span className="text-accent-cyan">Synthesis:</span> The computational science of quantifying the <span className="text-white font-normal border-b border-white/20">unseen parameters</span> of enterprise intelligence.
+                  </p>
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
