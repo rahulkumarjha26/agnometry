@@ -265,19 +265,7 @@ const App: React.FC = () => {
         {isChatOpen && <ChatInterface onClose={() => setIsChatOpen(false)} />}
       </AnimatePresence>
 
-      {/* Floating Chat Trigger */}
-      <motion.button
-        onClick={() => setIsChatOpen(true)}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 md:bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-      </motion.button>
+
 
       {/* Background Layer */}
       <div className="fixed inset-0 z-0">
@@ -366,7 +354,7 @@ const App: React.FC = () => {
         <Footer />
       </main>
 
-      <SmartDock />
+      <SmartDock onChatOpen={() => setIsChatOpen(true)} />
     </div>
 
   );
