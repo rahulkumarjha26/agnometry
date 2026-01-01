@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Logo } from './Logo';
 
 interface LoadingScreenProps {
     onComplete: () => void;
@@ -62,28 +63,26 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             {/* Cinematic Noise Overlay */}
             <div className="absolute inset-0 opacity-[0.04] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay" />
 
-            {/* Central Typography */}
-            <div className="relative z-10 overflow-hidden">
+            {/* Central Logo */}
+            <div className="relative z-10 overflow-hidden flex flex-col items-center gap-6">
+                <div className="relative w-32 h-32 md:w-48 md:h-48">
+                    <Logo className="w-full h-full" animated={true} />
+
+                    {/* Glow behind logo */}
+                    <div className="absolute inset-0 bg-accent-cyan/20 blur-[40px] rounded-full -z-10 animate-pulse" />
+                </div>
+
                 <motion.h1
-                    initial={{ y: 20, opacity: 0, filter: "blur(20px)" }}
+                    initial={{ y: 20, opacity: 0 }}
                     animate={{
                         y: isExiting ? -20 : 0,
                         opacity: isExiting ? 0 : 1,
-                        filter: isExiting ? "blur(10px)" : "blur(0px)"
                     }}
-                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-serif italic text-4xl md:text-6xl text-white font-medium tracking-tight mix-blend-difference"
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="font-serif italic text-3xl md:text-4xl text-white font-medium tracking-tight mix-blend-difference"
                 >
                     Agnometry
                 </motion.h1>
-
-                {/* Subtle underline reveal */}
-                <motion.div
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: isExiting ? 0 : "100%", opacity: isExiting ? 0 : 1 }}
-                    transition={{ delay: 0.5, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-[1px] bg-accent-cyan mt-4 mx-auto"
-                />
             </div>
 
             {/* Minimalist Progress Counter (Bottom Right) */}
