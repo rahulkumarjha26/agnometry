@@ -14,6 +14,7 @@ import { SkewedText } from './components/SkewedText';
 const Header: React.FC = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isLogoHovered, setIsLogoHovered] = React.useState(false);
 
   React.useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -31,11 +32,45 @@ const Header: React.FC = () => {
         : "py-[clamp(2rem,5vw,5rem)] bg-transparent"
         }`}
     >
-      <div className="pointer-events-auto relative group cursor-pointer">
+      <div
+        className="pointer-events-auto relative group cursor-pointer"
+        onMouseEnter={() => setIsLogoHovered(true)}
+        onMouseLeave={() => setIsLogoHovered(false)}
+      >
         <h1 className={`font-serif italic text-2xl text-white font-medium tracking-tight transition-all duration-500 ${!isScrolled && "mix-blend-difference"}`}>
           Agnometry
         </h1>
         <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent-cyan transition-all duration-500 group-hover:w-full" />
+
+        {/* Logo Definition Tooltip */}
+        <AnimatePresence>
+          {isLogoHovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: 5, filter: "blur(5px)" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute top-full left-0 mt-4 w-[280px] p-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden"
+            >
+              <div className="flex flex-col gap-3">
+                <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
+                  <span className="font-serif italic text-accent-cyan text-lg">Agno-</span>
+                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Greek: Unknown</span>
+                </div>
+                <div className="flex items-baseline justify-between border-b border-white/10 pb-2">
+                  <span className="font-serif italic text-accent-violet text-lg">-metry</span>
+                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Measurement</span>
+                </div>
+                <p className="text-xs text-white/70 font-light leading-relaxed pt-1">
+                  The science of quantifying the <span className="text-white font-medium">unseen</span> parameters of intelligence.
+                </p>
+              </div>
+
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-accent-cyan/20 to-transparent pointer-events-none" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <motion.div

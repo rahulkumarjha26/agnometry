@@ -166,7 +166,7 @@ export const BentoGrid: React.FC = () => {
         <CardWrapper delay={0.6} className="bg-obsidian/[0.02]">
           <div className="flex flex-col h-full justify-center">
             <p className="font-sans text-2xl md:text-3xl font-light leading-[1.1] tracking-tight text-white">
-              "In 2025, the competitive advantage is no longer about headcount. It's about <span className="font-serif italic text-accent-cyan">compute density</span> per employee."
+              "In 2026, the competitive advantage is no longer about headcount. It's about <span className="font-serif italic text-accent-cyan">compute density</span> per employee."
             </p>
           </div>
         </CardWrapper>
