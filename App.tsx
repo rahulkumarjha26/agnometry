@@ -309,7 +309,7 @@ const Footer = () => {
 import { CustomCursor } from './components/CustomCursor';
 import { ChatInterface } from './components/ChatInterface';
 
-import { LoadingScreen } from './components/LoadingScreen';
+import { Splash3D } from './components/Splash3D';
 
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = React.useState(false);
@@ -327,7 +327,7 @@ const App: React.FC = () => {
       <CustomCursor />
 
       <AnimatePresence mode="wait">
-        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+        {isLoading && <Splash3D onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
 
       {/* Chat Interface Overlay */}
@@ -424,7 +424,7 @@ const App: React.FC = () => {
         <Footer />
       </main>
 
-      <SmartDock onChatOpen={() => setIsChatOpen(true)} />
+      {!isLoading && <SmartDock onChatOpen={() => setIsChatOpen(true)} />}
     </div>
 
   );
