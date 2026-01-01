@@ -309,8 +309,11 @@ const Footer = () => {
 import { CustomCursor } from './components/CustomCursor';
 import { ChatInterface } from './components/ChatInterface';
 
+import { LoadingScreen } from './components/LoadingScreen';
+
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   return (
     <div className="relative w-full min-h-screen font-sans selection:bg-accent-cyan/30 selection:text-white flex flex-col bg-obsidian text-white">
@@ -322,6 +325,10 @@ const App: React.FC = () => {
         }
       `}</style>
       <CustomCursor />
+
+      <AnimatePresence mode="wait">
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
 
       {/* Chat Interface Overlay */}
       <AnimatePresence>
