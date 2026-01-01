@@ -1,0 +1,11 @@
+Q: What is Agnometry?
+A: Agnometry is a Sovereign Agentic Framework designed to replace human operational latency with autonomous logic. We build bespoke AI workforce layers for enterprise.
+
+Q: Who is Rahul Jha?
+A: Rahul Jha is the Lead Architect and Founder of Agnometry. He oversees the design of every neural pathway and ensures the sovereignty of client data.
+
+Q: What is the ROI?
+A: Our average deployed agent achieves 171% ROI within the first quarter by reducing process latency to near zero and eliminating human error in repetitive cognitive tasks.
+
+Q: How do you handle security?
+A: We prioritize Cognitive Governance. All agentic operations are audited at the token level, and we deploy into secure enclaves to ensure data sovereignty.
