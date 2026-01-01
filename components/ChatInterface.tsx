@@ -26,12 +26,31 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const wsRef = useRef<WebSocket | null>(null);
 
+    const [isConnected, setIsConnected] = useState(false);
+    const [connectionError, setConnectionError] = useState<string | null>(null);
+
     useEffect(() => {
         // Use environment variable for WebSocket URL, fallback to localhost for development
         const wsUrl = import.meta.env.VITE_WEBSOCKET_URL || 'ws://localhost:8000/ws';
+        console.log('Connecting to WebSocket:', wsUrl);
+
         const ws = new WebSocket(wsUrl);
 
-        ws.onopen = () => console.log('Connected');
+        ws.onopen = () => {
+            console.log('Connected');
+            setIsConnected(true);
+            setConnectionError(null);
+        };
+
+        ws.onclose = () => {
+            console.log('Disconnected');
+            setIsConnected(false);
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket Error:', error);
+            setConnectionError('Connection failed');
+        };
 
         ws.onmessage = (event) => {
             const text = event.data;
@@ -108,7 +127,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
         >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/[0.02]">
-                <h2 className="text-sm font-medium text-white/90 tracking-tight">Agnometry</h2>
+                <div className="flex items-center gap-2">
+                    <h2 className="text-sm font-medium text-white/90 tracking-tight">Agnometry</h2>
+                    <div className={`w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]' : 'bg-red-500'}`} />
+                </div>
                 <button
                     onClick={onClose}
                     className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white/40 hover:text-white"

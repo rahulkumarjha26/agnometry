@@ -39,6 +39,10 @@ async def heartbeat():
         print(f"[Server] Heartbeat - {time.strftime('%X')}")
         await asyncio.sleep(10)
 
+@app.get("/")
+async def read_root():
+    return {"message": "Agnometry Intelligence Engine Online"}
+
 @app.get("/health")
 async def health_check():
     return {"status": "active", "timestamp": time.time()}
