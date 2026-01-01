@@ -27,7 +27,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
     const wsRef = useRef<WebSocket | null>(null);
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8000/ws');
+        // Use environment variable for WebSocket URL, fallback to localhost for development
+        const wsUrl = import.meta.env.VITE_WEBSOCKET_URL || 'ws://localhost:8000/ws';
+        const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => console.log('Connected');
 
@@ -129,8 +131,8 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
                     >
                         <div
                             className={`max-w-[90%] text-[13px] leading-relaxed ${msg.role === 'user'
-                                    ? 'text-white bg-white/10 px-4 py-2.5 rounded-2xl rounded-tr-sm'
-                                    : 'text-white/80 px-0 py-0'
+                                ? 'text-white bg-white/10 px-4 py-2.5 rounded-2xl rounded-tr-sm'
+                                : 'text-white/80 px-0 py-0'
                                 }`}
                         >
                             {msg.text}
