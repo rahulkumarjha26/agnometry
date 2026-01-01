@@ -10,7 +10,6 @@ import { Pricing } from './components/Pricing';
 import { Team } from './components/Team';
 
 import { SkewedText } from './components/SkewedText';
-import { Logo } from './components/Logo';
 
 const Header: React.FC = () => {
   const { scrollY } = useScroll();
@@ -38,11 +37,9 @@ const Header: React.FC = () => {
         onMouseEnter={() => setIsLogoHovered(true)}
         onMouseLeave={() => setIsLogoHovered(false)}
       >
-        <img
-          src="/logo.png"
-          alt="Agnometry"
-          className={`h-8 w-auto object-contain transition-all duration-500 ${!isScrolled && "brightness-0 invert"}`}
-        />
+        <h1 className={`font-serif italic text-2xl text-white font-medium tracking-tight transition-all duration-500 ${!isScrolled && "mix-blend-difference"}`}>
+          Agnometry
+        </h1>
         <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent-cyan transition-all duration-500 group-hover:w-full" />
 
         {/* Logo Definition Tooltip - World Class Design */}
@@ -245,8 +242,8 @@ const Footer = () => {
 
           {/* Col 1: Brand */}
           <div className="flex flex-col gap-6">
-            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center backdrop-blur-md border border-white/10">
-              <Logo className="w-6 h-6 text-white" />
+            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/10">
+              <div className="w-2 h-2 bg-accent-cyan rounded-full animate-pulse shadow-[0_0_10px_rgba(0,255,255,0.5)]" />
             </div>
             <p className="text-white/40 font-mono text-xs uppercase tracking-widest max-w-[200px] leading-relaxed">
               Engineering the autonomous enterprise future.
